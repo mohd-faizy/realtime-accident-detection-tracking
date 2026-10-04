@@ -227,16 +227,6 @@ pytest tests/
 
 ---
 
-## Community & Feedback
-
-This project helped me explore how multiple object detection models, multi-object tracking, spatial filtering, and video processing can work together in a practical traffic-monitoring scenario.
-
-I’d appreciate your feedback and suggestions on this project as I continue learning and exploring Computer Vision!
-
-`#ComputerVision` `#YOLO11` `#ObjectDetection` `#ObjectTracking` `#BoTSORT` `#Python` `#OpenCV` `#AI` `#MachineLearning` `#TrafficMonitoring` `#AccidentDetection`
-
----
-
 ## 📄 License
 
 This repository is licensed under the **MIT License**. See the [`LICENSE`](LICENSE) file for complete details.
