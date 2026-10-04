@@ -26,22 +26,6 @@ An intelligent, real-time traffic monitoring and safety system developed using *
 
 ---
 
-## Key Highlights
-
-- **Accident Detection (Custom YOLO)**: Detects road accidents and collision zones using a dedicated custom-trained accident detector (`models/accident_yolo11s.pt`).
-- **Vehicle Detection (Pretrained YOLO11n)**: Detects cars, motorcycles, buses, and trucks in real-time with lightweight efficiency.
-- **Multi-Object Tracking (BoT-SORT)**: Tracks detected vehicles across frames, maintaining consistent, persistent unique IDs.
-- **Vehicle Collision Analysis**: Detects physical vehicle collisions via inter-vehicle bounding box overlap and mutual spatial containment.
-- **Zero False Positives Before Collision**: Strict class validation ensures normal flowing traffic is never mislabeled as accidents before an actual collision occurs.
-- **Spatial Filtering & Region Matching**: Employs confidence filtering, Non-Maximum Suppression (NMS), IoU, and containment-based spatial analysis.
-- **Anti-Flicker Persistence Memory**: Maintains accident bounding boxes during temporary detection dropouts caused by smoke, blur, or occlusion.
-- **Label Suppression**: Automatically suppresses redundant vehicle bounding boxes inside confirmed accident zones to eliminate visual clutter.
-- **Real-Time Emergency Alerts**: Displays an on-screen visual alert banner (`CRITICAL ALERT: ROAD ACCIDENT DETECTED!`) and logs incident details.
-- **Annotated Video Production**: Generates clean, production-ready video outputs complete with tracking IDs, bounding boxes, and HUD metrics.
-- **Bundled Test Assets**: Pre-configured sample traffic video in `assets/` ready for instant testing out of the box.
-
----
-
 ## System Architecture & Workflow
 
 ```mermaid
