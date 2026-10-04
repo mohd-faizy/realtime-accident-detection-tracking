@@ -1,0 +1,43 @@
+# ==============================================================================
+# Road Accident Detection & Vehicle Tracking System Configuration
+# ==============================================================================
+
+# Hardware Device: "cuda", "cpu", or "auto"
+device: "auto"
+
+# YOLO Models Configuration
+models:
+  # Custom-trained YOLO11s for Road Accident Detection
+  accident:
+    weights: "models/accident_yolo11s.pt"  # Path to custom-trained YOLO11s weights (falls back to yolo11s.pt)
+    conf_threshold: 0.40                  # Minimum confidence cutoff for accident detection
+    iou_threshold: 0.45                   # Non-Maximum Suppression (NMS) IoU threshold
+
+  # Pretrained YOLO11n for Vehicle Detection
+  vehicle:
+    weights: "models/yolo11n.pt"          # Pretrained weights (stored in models/ directory)
+    conf_threshold: 0.35                  # Minimum confidence cutoff for vehicle detection
+    iou_threshold: 0.50                   # Non-Maximum Suppression (NMS) IoU threshold
+    # COCO vehicle classes: 1: bicycle, 2: car, 3: motorcycle, 5: bus, 7: truck
+    classes: [1, 2, 3, 5, 7]
+
+# Multi-Object Tracker (BoT-SORT)
+tracker:
+  type: "botsort.yaml"                    # BoT-SORT configuration file (built into Ultralytics)
+  max_history: 30                         # Frames of trajectory centroid history to maintain
+
+# Spatial Filtering & Accident Logic
+logic:
+  containment_threshold: 0.50             # Suppression triggers if vehicle area is >= 50% inside accident zone
+  iou_match_threshold: 0.30               # IoU threshold for matching accident detections across frames
+  persistence_frames: 15                  # Frames to maintain accident bounding box during temporary loss (~0.5s at 30fps)
+  smoothing_alpha: 0.70                   # Exponential moving average factor for bounding box coordinates
+  suppress_vehicle_labels: true           # Suppress normal vehicle labels inside confirmed accident regions
+
+# Visualization & Output Settings
+visualization:
+  show_tracking_ids: true                 # Render BoT-SORT unique IDs (#1, #2, etc.)
+  show_confidence: true                   # Render confidence scores
+  show_alert_banner: true                 # Displays prominent top emergency alert banner on accident
+  show_hud_stats: true                    # Displays FPS and tracking statistics overlay
+  line_thickness: 2                       # Bounding box stroke width
